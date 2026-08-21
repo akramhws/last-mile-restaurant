@@ -11,7 +11,7 @@ struct ContentView: View {
     @State private var searchText  = ""
 
     var categories: [String] {
-        ["الكل"] + Array(Set(items.map(\\.category))).sorted()
+        ["الكل"] + Array(Set(items.map(\.category))).sorted()
     }
     var filtered: [MenuItem] {
         items.filter {
@@ -37,7 +37,7 @@ struct ContentView: View {
 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 8) {
-                        ForEach(categories, id: \\.self) { cat in
+                        ForEach(categories, id: \.self) { cat in
                             Button(cat) { selectedCat = cat }
                                 .buttonStyle(.plain)
                                 .font(.system(size: 13, weight: .semibold, design: AppConfig.fontDesign))
@@ -74,6 +74,6 @@ struct ContentView: View {
             .navigationTitle("").navigationBarHidden(true)
             .searchable(text: $searchText, prompt: "ابحث في القائمة...")
         }
-        .environment(\\.layoutDirection, .rightToLeft)
+        .environment(\.layoutDirection, .rightToLeft)
     }
 }
